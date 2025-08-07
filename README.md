@@ -11,7 +11,7 @@ $$\begin{equation}
     f(x_1, x_2) = \vec{x}^T A \vec{x} + B^T \vec{x} + c,
 \end{equation}$$
 
-где $A$ - квадратная матрица размера $N=2$,
+где $A$ − квадратная матрица размера $N=2$,
 
 $$\begin{equation}
    B = \begin{bmatrix}
@@ -27,7 +27,7 @@ $$\begin{equation}
     \end{bmatrix},
 \end{equation}$$
 
-$c$ - вещественное число.
+$c$ − вещественное число.
 
 ## Функция Розенброка
 
