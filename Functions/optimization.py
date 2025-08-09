@@ -2,26 +2,30 @@
 # 08-Aug-2025
 import numpy as np
 from IPython.display import clear_output
-import time
 
 # Классический градиентный спуск.
-def classic_grad(loss_func, grad_func, x, learning_rate, tolerance):
-    time_init = time.time()
+def classic_grad_descent(loss_func, grad_func, x, learning_rate, tolerance):
     
     iteration_max = 200000
+    
+    func_counter = 0
+    grad_counter = 0
     
     losses = []
     
     for i in range(iteration_max):
         grad = grad_func(x)
+        grad_counter += 1
+        
         x_prev = x.copy()
         
         x -= learning_rate * grad
         
-        x_norm = np.linalg.norm((x - x_prev), ord=None, axis=None)
-        
         loss = loss_func(x)
+        func_counter += 1
         losses.append(loss)
+        
+        x_norm = np.linalg.norm((x - x_prev), ord=None, axis=None)
         
         if i % 100 == 0:
             clear_output(wait=True)
@@ -40,5 +44,5 @@ def classic_grad(loss_func, grad_func, x, learning_rate, tolerance):
             break
     
     iter_final = i
-    fit_time = time.time() - time_init
-    return x, losses, iter_final, fit_time
+
+    return x, losses, iter_final, func_counter, grad_counter
