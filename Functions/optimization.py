@@ -1,10 +1,11 @@
-# version 0.2 by romangorbunov91
-# 11-Aug-2025
+# version 0.3 by romangorbunov91
+# 12-Aug-2025
 import numpy as np
 
 # Классический градиентный спуск.
 def classic_grad_descent(loss_func, grad_func, x_init, learning_rate, tolerance, printoutput):
-    
+    # both 'x_init' and 'learning_rate' must be np.array([val1, val2]).
+    # 'printoutput' is BOOL.
     iteration_max = 10000000
     
     func_counter = 0
