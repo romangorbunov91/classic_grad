@@ -1,25 +1,27 @@
 # version 0.1 by romangorbunov91
-# 10-Aug-2025
-import numpy as np
+# 15-Aug-2025
 
-def f_well(x):
-    return 0.8 * x[0]**2 + 1.2 * x[1]**2 + 0.4 * x[0]*x[1]
+import re
 
-def f_poor(x):
-    return 2 * x[0]**2 + 205 * x[1]**2 - 10 * x[0]*x[1] + 20 * x[0] + 30 * x[1] + 23
+def update_readme_section(tbl_df, readme_path, tbl_name, section):
+    markdown_table = tbl_df.to_markdown(index=False)
 
-def f_rozen(x):
-    return (1-x[0])**2 + 100 * (x[1]-x[0]**2)**2
+    with open(readme_path, 'r', encoding="utf-8-sig") as f:
+        content = f.read()
 
+    # Define start and end markers.
+    start_marker = f'<!-- START_{section.upper()} -->'
+    end_marker = f'<!-- END_{section.upper()} -->'
 
-def grad_well(x):
-    return np.array([1.6*x[0] + 0.4*x[1],
-                     0.4*x[0] + 2.4*x[1]])
+    # Wrap the table with headers and markers.
+    new_section = f'\n{start_marker} \n### {tbl_name}\n{markdown_table}\n{end_marker}'
+    
+    # Remove any previous content between the markers.
+    pattern = re.compile(f'{re.escape(start_marker)}.*?{re.escape(end_marker)}', re.DOTALL)
+    updated_content = pattern.sub("", content)
 
-def grad_poor(x):
-    return np.array([4*x[0] - 10*x[1] + 20,
-                     -10*x[0] + 410*x[1] + 30])
+    # Insert the new section to the end of the file.
+    updated_content += new_section
 
-def grad_rozen(x):
-    return np.array([400*x[0]**3 + 2*x[0] - 400*x[0]*x[1] - 2,
-                     -200*x[0]**2 + 200*x[1]])
+    with open(readme_path, 'w', encoding="utf-8-sig") as f:
+        f.write(updated_content)
