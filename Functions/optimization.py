@@ -1,5 +1,5 @@
-# version 0.4 by romangorbunov91
-# 15-Aug-2025
+# version 0.1.2 by romangorbunov91
+# 19-Aug-2025
 import numpy as np
 
 # Классический градиентный спуск.
@@ -11,9 +11,10 @@ def classic_grad_descent(loss_func, grad_func, x_init, learning_rate, tolerance,
     func_counter = 0
     grad_counter = 0
     
-    losses = []
-    
     x = x_init.copy()
+    trajectory = []
+    trajectory.append(x.copy())
+    
     for i in range(iteration_max):
         grad = grad_func(x)
         grad_counter += 1
@@ -21,10 +22,10 @@ def classic_grad_descent(loss_func, grad_func, x_init, learning_rate, tolerance,
         x_prev = x.copy()
         
         x -= learning_rate * grad
+        trajectory.append(x.copy())
         
         loss = loss_func(x)
         func_counter += 1
-        losses.append(loss)
         
         x_norm = np.linalg.norm((x - x_prev), ord=None, axis=None)
         grad_norm = np.linalg.norm(grad, ord=None, axis=None)
@@ -44,7 +45,7 @@ def classic_grad_descent(loss_func, grad_func, x_init, learning_rate, tolerance,
         print('Gradient norm:', np.round(grad_norm,4))
         print('Loss:', np.round(loss,4))
 
-    return x, losses, i+1, func_counter, grad_counter
+    return x, trajectory, i+1, func_counter, grad_counter
 
 
 # Градиентный спуск с дроблением шага по условию Армихо.
@@ -53,9 +54,10 @@ def armijo_grad_descent(loss_func, grad_func, x_init, lr_multiplier, lr_coeff, t
     # 'printoutput' is BOOL.
     iteration_max = 10000000
     
-    losses = []
-    
     x = x_init.copy()
+    trajectory = []
+    trajectory.append(x.copy())
+    
     loss = loss_func(x)
     grad = grad_func(x)
     func_counter = 1
@@ -73,10 +75,10 @@ def armijo_grad_descent(loss_func, grad_func, x_init, lr_multiplier, lr_coeff, t
         
         x_prev = x.copy()
         x -= learning_rate * grad
+        trajectory.append(x.copy())
         
         loss = loss_func(x)
         func_counter += 1
-        losses.append(loss)
 
         grad = grad_func(x)
         grad_counter += 1
@@ -100,4 +102,4 @@ def armijo_grad_descent(loss_func, grad_func, x_init, lr_multiplier, lr_coeff, t
         print('Gradient norm:', np.round(grad_norm,4))
         print('Loss:', np.round(loss,4))
 
-    return x, losses, i+1, func_counter, grad_counter
+    return x, trajectory, i+1, func_counter, grad_counter
