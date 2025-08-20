@@ -2,7 +2,7 @@
 ## Критерий останова
 
 $$\begin{equation}
-    \|\nabla f(x_k)\| < \varepsilon.
+    \|\nabla f(x_k)\| < 1e-5.
 \end{equation}$$
 
 ## Функция Розенброка

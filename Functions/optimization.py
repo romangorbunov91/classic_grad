@@ -1,5 +1,5 @@
-# version 0.1.2 by romangorbunov91
-# 19-Aug-2025
+# version 0.1.3 by romangorbunov91
+# 20-Aug-2025
 import numpy as np
 
 # Классический градиентный спуск.
@@ -24,33 +24,25 @@ def classic_grad_descent(loss_func, grad_func, x_init, learning_rate, tolerance,
         x -= learning_rate * grad
         trajectory.append(x.copy())
         
-        loss = loss_func(x)
-        func_counter += 1
-        
-        x_norm = np.linalg.norm((x - x_prev), ord=None, axis=None)
         grad_norm = np.linalg.norm(grad, ord=None, axis=None)
 
         if (grad_norm < tolerance):
             if printoutput:
                 print('Iteration:', i)
                 print('x-values:', np.round(x,4))
-                print('x-norm:', np.round(x_norm,4))
                 print('Gradient norm:', np.round(grad_norm,4))
-                print('Loss:', np.round(loss,4))
             break
     if printoutput:
         print('Iteration:', i)
         print('x-values:', np.round(x,4))
-        print('x-norm:', np.round(x_norm,4))
         print('Gradient norm:', np.round(grad_norm,4))
-        print('Loss:', np.round(loss,4))
 
     return x, trajectory, i+1, func_counter, grad_counter
 
 
 # Градиентный спуск с дроблением шага по условию Армихо.
 def armijo_grad_descent(loss_func, grad_func, x_init, lr_multiplier, lr_coeff, tolerance, printoutput):
-    # both 'x_init' and 'learning_rate_init' must be np.array([val1, val2]).
+    # 'x_init' must be np.array([val1, val2]).
     # 'printoutput' is BOOL.
     iteration_max = 10000000
     
@@ -59,8 +51,9 @@ def armijo_grad_descent(loss_func, grad_func, x_init, lr_multiplier, lr_coeff, t
     trajectory.append(x.copy())
     
     loss = loss_func(x)
-    grad = grad_func(x)
     func_counter = 1
+    
+    grad = grad_func(x)
     grad_counter = 1
     
     grad_norm = np.linalg.norm(grad, ord=None, axis=None)
@@ -101,5 +94,97 @@ def armijo_grad_descent(loss_func, grad_func, x_init, lr_multiplier, lr_coeff, t
         print('x-norm:', np.round(x_norm,4))
         print('Gradient norm:', np.round(grad_norm,4))
         print('Loss:', np.round(loss,4))
+
+    return x, trajectory, i+1, func_counter, grad_counter
+
+# Метод золотого сечения.
+def golden(f, x_min, x_max, max_iter, eps):
+    
+    # Constant.
+    phi = (1 + np.sqrt(5)) / 2
+    # Initial step.
+    x_l = x_min
+    x_r = x_max
+    delta = (x_r - x_l)/phi
+    x_center_l = x_r - delta
+    x_center_r = x_l + delta
+    f_l = f(x_center_l)
+    f_r = f(x_center_r)
+
+    # Function compute counter.
+    counter = 2
+    
+    for k in range(max_iter):
+        if f_l > f_r:
+            f_l = f_r
+            x_l = x_center_l
+            x_center_l = x_center_r
+            x_center_r = x_l + (x_r - x_l)/phi
+            f_r = f(x_center_r)
+        else:
+            f_r = f_l
+            x_r = x_center_r
+            x_center_r = x_center_l
+            x_center_l = x_r - (x_r - x_l)/phi
+            f_l = f(x_center_l)
+
+        counter += 1
+        
+        if (x_r - x_l) < eps:
+            return (x_r + x_l)/2, k+1, counter
+    print('Solution has not been found (')
+
+# Наискорейший спуск с одномерным поиском методом золотого сечения.
+def steepest_grad_descent(loss_func, grad_func, x_init, tolerance, printoutput):
+    # 'x_init' must be np.array([val1, val2]).
+    # 'printoutput' is BOOL.
+    iteration_max = 10000000
+    
+    x = x_init.copy()
+    trajectory = []
+    trajectory.append(x.copy())
+    
+    func_counter = 0
+    
+    grad = grad_func(x)
+    grad_counter = 1
+       
+    def loss_func_1D(lr):
+        learning_rate = np.array([lr]*2)
+        return loss_func(x - learning_rate * grad)
+    
+    for i in range(iteration_max):
+        lr_optim, _, counter = golden(loss_func_1D, x_min=1e-8, x_max=0.1, max_iter=100, eps=tolerance)
+        print(lr_optim)
+        learning_rate = np.array([lr_optim]*2)
+        func_counter += counter
+        
+        x_prev = x.copy()
+        x -= learning_rate * grad
+        trajectory.append(x.copy())
+
+        grad = grad_func(x)
+        grad_counter += 1
+        if np.isnan(grad).any():
+            print(grad)
+            print(x)
+            print(learning_rate)
+        
+        # New norm-values.
+        x_norm = np.linalg.norm((x - x_prev), ord=None, axis=None)
+        grad_norm = np.linalg.norm(grad, ord=None, axis=None)
+        
+        if (grad_norm < tolerance):
+            if printoutput:
+                print('Iteration:', i)
+                print('x-values:', np.round(x,4))
+                print('x-norm:', np.round(x_norm,4))
+                print('Gradient norm:', np.round(grad_norm,4))
+            break
+    if printoutput:
+        print('Iteration:', i)
+        print('x-values:', np.round(x,4))
+        print('x-norm:', np.round(x_norm,4))
+        print('Gradient norm:', np.round(grad_norm,4))
 
     return x, trajectory, i+1, func_counter, grad_counter

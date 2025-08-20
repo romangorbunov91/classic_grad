@@ -3,7 +3,7 @@
 ## Критерий останова
 
 $$\begin{equation}
-    \|\nabla f(x_k)\| < 1e-5.
+    \|\nabla f(x_k)\| < \varepsilon.
 \end{equation}$$
 
 ## Координаты минимума функции
