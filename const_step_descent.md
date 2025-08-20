@@ -1,11 +1,38 @@
 ﻿# Градиентный спуск с постоянным шагом
 
-В качестве критерия останова принята норма градиента.
+## Критерий останова
 
+$$\begin{equation}
+    \|\nabla f(x_k)\| < 1e-5.
+\end{equation}$$
+
+## Координаты минимума функции
 <img src='readme_img/const_step_descent_img/x1_optim_Well-conditioned.png' style='width:100%; height:auto;'>
+<img src='readme_img/const_step_descent_img/x2_optim_Well-conditioned.png' style='width:100%; height:auto;'>
+<img src='readme_img/const_step_descent_img/x1_optim_Poorly-conditioned.png' style='width:100%; height:auto;'>
+<img src='readme_img/const_step_descent_img/x2_optim_Poorly-conditioned.png' style='width:100%; height:auto;'>
+<img src='readme_img/const_step_descent_img/x1_optim_Rosenbrock.png' style='width:100%; height:auto;'>
+<img src='readme_img/const_step_descent_img/x2_optim_Rosenbrock.png' style='width:100%; height:auto;'>
+
+## Количество итераций
+<img src='readme_img/const_step_descent_img/iter_count_Well-conditioned.png' style='width:100%; height:auto;'>
+<img src='readme_img/const_step_descent_img/iter_count_Poorly-conditioned.png' style='width:100%; height:auto;'>
+<img src='readme_img/const_step_descent_img/iter_count_Rosenbrock.png' style='width:100%; height:auto;'>
+
+## Количество вычислений функции
+<img src='readme_img/const_step_descent_img/func_count_Well-conditioned.png' style='width:100%; height:auto;'>
+<img src='readme_img/const_step_descent_img/func_count_Poorly-conditioned.png' style='width:100%; height:auto;'>
+<img src='readme_img/const_step_descent_img/func_count_Rosenbrock.png' style='width:100%; height:auto;'>
+
+## Количество вычислений градиента
+<img src='readme_img/const_step_descent_img/grad_count_Well-conditioned.png' style='width:100%; height:auto;'>
+<img src='readme_img/const_step_descent_img/grad_count_Poorly-conditioned.png' style='width:100%; height:auto;'>
+<img src='readme_img/const_step_descent_img/grad_count_Rosenbrock.png' style='width:100%; height:auto;'>
+
+# Приложение с таблицами
 
 <!-- START_X_OPTIM_WELL-CONDITIONED --> 
-### Координаты минимума функции: Well-conditioned
+## Координаты минимума функции: Well-conditioned
 |    eps |   x1 (lr=0.1) |   x2 (lr=0.1) |   x1 (lr=0.01) |   x2 (lr=0.01) |   x1 (lr=0.001) |   x2 (lr=0.001) |   x1 (lr=0.0001) |   x2 (lr=0.0001) |   x1 (lr=1e-05) |   x2 (lr=1e-05) |
 |-------:|--------------:|--------------:|---------------:|---------------:|----------------:|----------------:|-----------------:|-----------------:|----------------:|----------------:|
 | 0.1    |   0.0472178   |  -0.0201369   |    0.0624272   |   -0.0273948   |     0.0636548   |    -0.0280155   |      0.0637595   |     -0.0280694   |     0.0637745   |    -0.0280769   |
@@ -15,7 +42,7 @@
 | 1e-05  |   5.11621e-06 |  -2.11922e-06 |    6.34504e-06 |   -2.6283e-06  |     6.43127e-06 |    -2.66403e-06 |      6.43977e-06 |     -2.66756e-06 |     6.44108e-06 |    -2.6681e-06  |
 <!-- END_X_OPTIM_WELL-CONDITIONED -->
 <!-- START_X_OPTIM_POORLY-CONDITIONED --> 
-### Координаты минимума функции: Poorly-conditioned
+## Координаты минимума функции: Poorly-conditioned
 |    eps |   x1 (lr=0.0001) |   x2 (lr=0.0001) |   x1 (lr=8e-05) |   x2 (lr=8e-05) |   x1 (lr=6e-05) |   x2 (lr=6e-05) |   x1 (lr=4e-05) |   x2 (lr=4e-05) |   x1 (lr=2e-05) |   x2 (lr=2e-05) |
 |-------:|-----------------:|-----------------:|----------------:|----------------:|----------------:|----------------:|----------------:|----------------:|----------------:|----------------:|
 | 0.1    |         -5.49286 |        -0.207137 |        -5.49286 |       -0.207137 |        -5.49286 |       -0.207137 |        -5.49286 |       -0.207137 |        -5.49285 |       -0.207137 |
@@ -25,7 +52,7 @@
 | 1e-05  |         -5.51948 |        -0.207792 |        -5.51948 |       -0.207792 |        -5.51948 |       -0.207792 |        -5.51948 |       -0.207792 |        -5.51948 |       -0.207792 |
 <!-- END_X_OPTIM_POORLY-CONDITIONED -->
 <!-- START_X_OPTIM_ROSENBROCK --> 
-### Координаты минимума функции: Rosenbrock
+## Координаты минимума функции: Rosenbrock
 |    eps |   x1 (lr=0.0001) |   x2 (lr=0.0001) |   x1 (lr=8e-05) |   x2 (lr=8e-05) |   x1 (lr=6e-05) |   x2 (lr=6e-05) |   x1 (lr=4e-05) |   x2 (lr=4e-05) |   x1 (lr=2e-05) |   x2 (lr=2e-05) |
 |-------:|-----------------:|-----------------:|----------------:|----------------:|----------------:|----------------:|----------------:|----------------:|----------------:|----------------:|
 | 0.1    |         0.897286 |         0.804686 |        0.897286 |        0.804685 |        0.897286 |        0.804685 |        0.897284 |        0.804682 |        0.897283 |        0.804679 |
@@ -35,7 +62,7 @@
 | 1e-05  |         0.999989 |         0.999978 |        0.999989 |        0.999978 |        0.999989 |        0.999978 |        0.999989 |        0.999978 |        0.999989 |        0.999978 |
 <!-- END_X_OPTIM_ROSENBROCK -->
 <!-- START_ITER_COUNTER_WELL-CONDITIONED --> 
-### Количество итераций: Well-conditioned
+## Количество итераций: Well-conditioned
 |    eps |   x1: lr=0.1, x2: lr=0.1 |   x1: lr=0.01, x2: lr=0.01 |   x1: lr=0.001, x2: lr=0.001 |   x1: lr=0.0001, x2: lr=0.0001 |   x1: lr=1e-05, x2: lr=1e-05 |
 |-------:|-------------------------:|---------------------------:|-----------------------------:|-------------------------------:|-----------------------------:|
 | 0.1    |                       26 |                        259 |                         2593 |                          25935 |                       259350 |
@@ -45,7 +72,7 @@
 | 1e-05  |                       85 |                        896 |                         9009 |                          90139 |                       901434 |
 <!-- END_ITER_COUNTER_WELL-CONDITIONED -->
 <!-- START_ITER_COUNTER_POORLY-CONDITIONED --> 
-### Количество итераций: Poorly-conditioned
+## Количество итераций: Poorly-conditioned
 |    eps |   x1: lr=0.0001, x2: lr=0.0001 |   x1: lr=8e-05, x2: lr=8e-05 |   x1: lr=6e-05, x2: lr=6e-05 |   x1: lr=4e-05, x2: lr=4e-05 |   x1: lr=2e-05, x2: lr=2e-05 |
 |-------:|-------------------------------:|-----------------------------:|-----------------------------:|-----------------------------:|-----------------------------:|
 | 0.1    |                          15083 |                        18854 |                        25139 |                        37710 |                        75421 |
@@ -55,7 +82,7 @@
 | 1e-05  |                          39614 |                        49519 |                        66028 |                        99044 |                       198095 |
 <!-- END_ITER_COUNTER_POORLY-CONDITIONED -->
 <!-- START_ITER_COUNTER_ROSENBROCK --> 
-### Количество итераций: Rosenbrock
+## Количество итераций: Rosenbrock
 |    eps |   x1: lr=0.0001, x2: lr=0.0001 |   x1: lr=8e-05, x2: lr=8e-05 |   x1: lr=6e-05, x2: lr=6e-05 |   x1: lr=4e-05, x2: lr=4e-05 |   x1: lr=2e-05, x2: lr=2e-05 |
 |-------:|-------------------------------:|-----------------------------:|-----------------------------:|-----------------------------:|-----------------------------:|
 | 0.1    |                          30937 |                        38666 |                        51548 |                        77312 |             154604           |
@@ -65,7 +92,7 @@
 | 1e-05  |                         255436 |                       319291 |                       425715 |                       638565 |                  1.27712e+06 |
 <!-- END_ITER_COUNTER_ROSENBROCK -->
 <!-- START_FUNC_COUNTER_WELL-CONDITIONED --> 
-### Количество вычислений функции: Well-conditioned
+## Количество вычислений функции: Well-conditioned
 |    eps |   x1: lr=0.1, x2: lr=0.1 |   x1: lr=0.01, x2: lr=0.01 |   x1: lr=0.001, x2: lr=0.001 |   x1: lr=0.0001, x2: lr=0.0001 |   x1: lr=1e-05, x2: lr=1e-05 |
 |-------:|-------------------------:|---------------------------:|-----------------------------:|-------------------------------:|-----------------------------:|
 | 0.1    |                       26 |                        259 |                         2593 |                          25935 |                       259350 |
@@ -75,7 +102,7 @@
 | 1e-05  |                       85 |                        896 |                         9009 |                          90139 |                       901434 |
 <!-- END_FUNC_COUNTER_WELL-CONDITIONED -->
 <!-- START_FUNC_COUNTER_POORLY-CONDITIONED --> 
-### Количество вычислений функции: Poorly-conditioned
+## Количество вычислений функции: Poorly-conditioned
 |    eps |   x1: lr=0.0001, x2: lr=0.0001 |   x1: lr=8e-05, x2: lr=8e-05 |   x1: lr=6e-05, x2: lr=6e-05 |   x1: lr=4e-05, x2: lr=4e-05 |   x1: lr=2e-05, x2: lr=2e-05 |
 |-------:|-------------------------------:|-----------------------------:|-----------------------------:|-----------------------------:|-----------------------------:|
 | 0.1    |                          15083 |                        18854 |                        25139 |                        37710 |                        75421 |
@@ -85,7 +112,7 @@
 | 1e-05  |                          39614 |                        49519 |                        66028 |                        99044 |                       198095 |
 <!-- END_FUNC_COUNTER_POORLY-CONDITIONED -->
 <!-- START_FUNC_COUNTER_ROSENBROCK --> 
-### Количество вычислений функции: Rosenbrock
+## Количество вычислений функции: Rosenbrock
 |    eps |   x1: lr=0.0001, x2: lr=0.0001 |   x1: lr=8e-05, x2: lr=8e-05 |   x1: lr=6e-05, x2: lr=6e-05 |   x1: lr=4e-05, x2: lr=4e-05 |   x1: lr=2e-05, x2: lr=2e-05 |
 |-------:|-------------------------------:|-----------------------------:|-----------------------------:|-----------------------------:|-----------------------------:|
 | 0.1    |                          30937 |                        38666 |                        51548 |                        77312 |             154604           |
@@ -95,7 +122,7 @@
 | 1e-05  |                         255436 |                       319291 |                       425715 |                       638565 |                  1.27712e+06 |
 <!-- END_FUNC_COUNTER_ROSENBROCK -->
 <!-- START_GRAD_COUNTER_WELL-CONDITIONED --> 
-### Количество вычислений градиента: Well-conditioned
+## Количество вычислений градиента: Well-conditioned
 |    eps |   x1: lr=0.1, x2: lr=0.1 |   x1: lr=0.01, x2: lr=0.01 |   x1: lr=0.001, x2: lr=0.001 |   x1: lr=0.0001, x2: lr=0.0001 |   x1: lr=1e-05, x2: lr=1e-05 |
 |-------:|-------------------------:|---------------------------:|-----------------------------:|-------------------------------:|-----------------------------:|
 | 0.1    |                       26 |                        259 |                         2593 |                          25935 |                       259350 |
@@ -105,7 +132,7 @@
 | 1e-05  |                       85 |                        896 |                         9009 |                          90139 |                       901434 |
 <!-- END_GRAD_COUNTER_WELL-CONDITIONED -->
 <!-- START_GRAD_COUNTER_POORLY-CONDITIONED --> 
-### Количество вычислений градиента: Poorly-conditioned
+## Количество вычислений градиента: Poorly-conditioned
 |    eps |   x1: lr=0.0001, x2: lr=0.0001 |   x1: lr=8e-05, x2: lr=8e-05 |   x1: lr=6e-05, x2: lr=6e-05 |   x1: lr=4e-05, x2: lr=4e-05 |   x1: lr=2e-05, x2: lr=2e-05 |
 |-------:|-------------------------------:|-----------------------------:|-----------------------------:|-----------------------------:|-----------------------------:|
 | 0.1    |                          15083 |                        18854 |                        25139 |                        37710 |                        75421 |
@@ -115,7 +142,7 @@
 | 1e-05  |                          39614 |                        49519 |                        66028 |                        99044 |                       198095 |
 <!-- END_GRAD_COUNTER_POORLY-CONDITIONED -->
 <!-- START_GRAD_COUNTER_ROSENBROCK --> 
-### Количество вычислений градиента: Rosenbrock
+## Количество вычислений градиента: Rosenbrock
 |    eps |   x1: lr=0.0001, x2: lr=0.0001 |   x1: lr=8e-05, x2: lr=8e-05 |   x1: lr=6e-05, x2: lr=6e-05 |   x1: lr=4e-05, x2: lr=4e-05 |   x1: lr=2e-05, x2: lr=2e-05 |
 |-------:|-------------------------------:|-----------------------------:|-----------------------------:|-----------------------------:|-----------------------------:|
 | 0.1    |                          30937 |                        38666 |                        51548 |                        77312 |             154604           |
