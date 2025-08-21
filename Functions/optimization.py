@@ -1,10 +1,10 @@
-# version 0.1.4 by romangorbunov91
+# version 0.1.5 by romangorbunov91
 # 21-Aug-2025
 import numpy as np
 
 # Классический градиентный спуск.
 def const_step_grad_descent(loss_func, grad_func, x_init, learning_rate, tolerance, printoutput):
-    # both 'x_init' and 'learning_rate' must be np.array([val1, val2]).
+    # 'x_init' must be np.array([val1, val2]).
     # 'printoutput' is BOOL.
     iteration_max = 10000000
     
@@ -60,19 +60,19 @@ def armijo_grad_descent(loss_func, grad_func, x_init, lr_multiplier, lr_coeff, t
         while (loss - loss_func(x - learning_rate * grad)) < lr_coeff * learning_rate * grad_norm**2:
             func_counter += 1
             learning_rate *= lr_multiplier
-        # One more increment.
+        # One more increment because of 'while'.
         func_counter += 1
         
         x -= learning_rate * grad
         trajectory.append(x.copy())
         
+        # New loss, grad, and norm-value.
         loss = loss_func(x)
         func_counter += 1
 
         grad = grad_func(x)
         grad_counter += 1
         
-        # New norm-value.
         grad_norm = np.linalg.norm(grad, ord=None, axis=None)
         
         if (grad_norm < tolerance):
@@ -155,7 +155,6 @@ def steepest_grad_descent(loss_func, grad_func, x_init, tolerance, printoutput):
         grad = grad_func(x)
         grad_counter += 1
         
-        # New norm-value.
         grad_norm = np.linalg.norm(grad, ord=None, axis=None)
         
         if (grad_norm < tolerance):

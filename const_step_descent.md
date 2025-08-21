@@ -31,18 +31,6 @@ $$\begin{equation}
 
 # Приложение с таблицами
 
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- START_X_OPTIM_WELL-CONDITIONED --> 
 ## Координаты минимума функции: Well-conditioned
 |    eps |   x1 (lr=0.1) |   x2 (lr=0.1) |   x1 (lr=0.01) |   x2 (lr=0.01) |   x1 (lr=0.001) |   x2 (lr=0.001) |   x1 (lr=0.0001) |   x2 (lr=0.0001) |   x1 (lr=1e-05) |   x2 (lr=1e-05) |
