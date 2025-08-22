@@ -1,4 +1,6 @@
 ﻿# Градиентный спуск с дроблением шага по условию Армихо
+Расчеты представлены в [armijo_step_descent.ipynb](armijo_step_descent.ipynb).
+
 ## Критерий останова
 
 $$\begin{equation}
@@ -30,7 +32,7 @@ $$\begin{equation}
 | 0.0001 |            -3.46931e-05 |             3.51437e-05 |                  -5.51946 |                 -0.207792 |          0.999892 |          0.999784 |
 | 1e-05  |            -2.77545e-06 |             2.81149e-06 |                  -5.51948 |                 -0.207792 |          0.999989 |          0.999978 |
 <!-- END_X_OPTIM -->
-<!-- START_ITER_COUNTER --> 
+<!-- START_ITER_COUNT --> 
 ## Количество итераций
 |    eps |   Well-conditioned |   Poorly-conditioned |   Rosenbrock |
 |-------:|-------------------:|---------------------:|-------------:|
@@ -39,8 +41,8 @@ $$\begin{equation}
 | 0.001  |                  9 |                  328 |         1063 |
 | 0.0001 |                 10 |                  403 |         1175 |
 | 1e-05  |                 12 |                  485 |         1325 |
-<!-- END_ITER_COUNTER -->
-<!-- START_FUNC_COUNTER --> 
+<!-- END_ITER_COUNT -->
+<!-- START_FUNC_COUNT --> 
 ## Количество вычислений функции
 |    eps |   Well-conditioned |   Poorly-conditioned |   Rosenbrock |
 |-------:|-------------------:|---------------------:|-------------:|
@@ -49,8 +51,8 @@ $$\begin{equation}
 | 0.001  |                 31 |                 3152 |        10865 |
 | 0.0001 |                 34 |                 3871 |        11900 |
 | 1e-05  |                 40 |                 4657 |        13286 |
-<!-- END_FUNC_COUNTER -->
-<!-- START_GRAD_COUNTER --> 
+<!-- END_FUNC_COUNT -->
+<!-- START_GRAD_COUNT --> 
 ## Количество вычислений градиента
 |    eps |   Well-conditioned |   Poorly-conditioned |   Rosenbrock |
 |-------:|-------------------:|---------------------:|-------------:|
@@ -59,4 +61,4 @@ $$\begin{equation}
 | 0.001  |                 10 |                  329 |         1064 |
 | 0.0001 |                 11 |                  404 |         1176 |
 | 1e-05  |                 13 |                  486 |         1326 |
-<!-- END_GRAD_COUNTER -->
+<!-- END_GRAD_COUNT -->
