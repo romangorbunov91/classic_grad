@@ -1,5 +1,5 @@
-# version 1.0 by romangorbunov91
-# 02-Sep-2025
+# version 1.1 by romangorbunov91
+# 06-Sep-2025
 
 import numpy as np
 import re
@@ -58,9 +58,9 @@ def funtion_generator(M, cond_number, seed=None):
     # Finally, define function and its gradient.
     
     def func(x):
-        return x @ A @ x + b @ x + c
+        return 0.5 * x @ A @ x + b @ x + c
 
     def grad_func(x):
-        return 2*A @ x + b
+        return A @ x + b
 
-    return A, b, c, func, grad_func
+    return np.matrix(A), np.matrix(b), c, func, grad_func

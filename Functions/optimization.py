@@ -169,3 +169,46 @@ def steepest_grad_descent(loss_func, grad_func, x_init, tolerance, printoutput):
         print('Gradient norm:', np.round(grad_norm,4))
 
     return x, trajectory, i+1, func_counter, grad_counter
+
+# Метод сопряженных градиентов.
+def conjugate_grad_descent(A, b, x_init, tolerance, printoutput):
+    # 'x_init' must be np.array([val1, val2]).
+    # 'printoutput' is BOOL.
+    iteration_max = 10000000
+    
+    x_init = (np.matrix(x_init)).T
+    x = x_init.copy()
+    trajectory = []
+    trajectory.append(x.copy())
+    
+    func_counter = 0
+    grad_counter = 0
+    
+    r = b.T - A * x
+    r_prev = r.copy()
+    p = r.copy()
+
+    for i in range(iteration_max):
+        learning_rate = ((r.T * r)/(p.T * A*p)).item()
+        
+        x += learning_rate * p
+        r -= learning_rate * A * p
+        beta = (r.T * r)/(r_prev.T * r_prev).item()
+        r_prev = r.copy()
+        p = r + beta * p
+        trajectory.append(x.copy())
+
+        r_norm = np.linalg.norm(r, ord=None, axis=None)
+        
+        if (r_norm < tolerance):
+            if printoutput:
+                print('Iteration:', i)
+                print('x-values:', np.round(x,4))
+                print('Gradient norm:', np.round(r_norm,4))
+            break
+    if printoutput:
+        print('Iteration:', i)
+        print('x-values:', np.round(x,4))
+        print('Gradient norm:', np.round(r_norm,4))
+
+    return x, trajectory, i+1, func_counter, grad_counter
