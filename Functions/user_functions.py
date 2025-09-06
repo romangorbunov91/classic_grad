@@ -58,9 +58,9 @@ def funtion_generator(M, cond_number, seed=None):
     # Finally, define function and its gradient.
     
     def func(x):
-        return 0.5 * x @ A @ x + b @ x + c
+        return 0.5 * x @ A @ x - b @ x + c
 
     def grad_func(x):
-        return A @ x + b
+        return A @ x - b
 
     return np.matrix(A), np.matrix(b), c, func, grad_func
