@@ -1,9 +1,12 @@
-# version 0.2 by romangorbunov91
-# 15-Aug-2025
+# version 1.0 by romangorbunov91
+# 05-Sep-2025
 
 import numpy as np
 
 # Functions.
+def func_mtrx(x, A, b, c):
+    return x @ A @ x + b @ x + c
+
 def f_well(x):
     return 0.8 * x[0]**2 + 1.2 * x[1]**2 + 0.4 * x[0]*x[1]
 

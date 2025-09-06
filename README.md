@@ -31,23 +31,17 @@ $$\begin{equation}
 в векторной форме записи:
 
 $$\begin{equation}
-    f(x_1, x_2) = \vec{x}^T A \vec{x} + B^T \vec{x} + c,
+    f(x_1, x_2) = \vec{x} A \vec{x} + B \vec{x} + c,
 \end{equation}$$
 
 где $A$ − квадратная матрица размера $N=2$,
 
 $$\begin{equation}
-   B = \begin{bmatrix}
-        b_1 \\
-        b_2
-    \end{bmatrix},
+   b = [b_1, b_2],
 \end{equation}$$
 
 $$\begin{equation}
-   \vec{x} = \begin{bmatrix}
-        x_1 \\
-        x_2
-    \end{bmatrix},
+   \vec{x} = [x_1, x_2]
 \end{equation}$$
 
 $c$ − вещественное число.
