@@ -1,5 +1,5 @@
-# version 1.0.0 by romangorbunov91
-# 06-Sep-2025
+# version 1.0.1 by romangorbunov91
+# 07-Sep-2025
 import numpy as np
 
 # Классический градиентный спуск.
@@ -176,10 +176,9 @@ def conjugate_grad_descent(A, b, x_init, tolerance, printoutput):
     # 'printoutput' is BOOL.
     iteration_max = 100
     
-    x_init = (np.matrix(x_init)).T
-    x = x_init.copy()
+    x = (np.matrix(x_init)).T.copy()
     trajectory = []
-    trajectory.append(x.T.copy())
+    trajectory.append(np.array(x.T).flatten().tolist().copy())
 
     r = b.T - A * x
     r_prev = r.copy()
@@ -189,7 +188,7 @@ def conjugate_grad_descent(A, b, x_init, tolerance, printoutput):
         learning_rate = ((r.T * r)/(p.T * A*p)).item()
         
         x += learning_rate * p
-        trajectory.append(x.T.copy())
+        trajectory.append(np.array(x.T).flatten().tolist().copy())
 
         r -= learning_rate * A * p
         beta = ((r.T * r)/(r_prev.T * r_prev)).item()
