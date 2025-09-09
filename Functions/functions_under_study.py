@@ -1,5 +1,5 @@
-# version 1.0 by romangorbunov91
-# 05-Sep-2025
+# version 1.1 by romangorbunov91
+# 09-Sep-2025
 
 import numpy as np
 
@@ -11,10 +11,10 @@ def f_well(x):
     return 0.8 * x[0]**2 + 1.2 * x[1]**2 + 0.4 * x[0]*x[1]
 
 def f_poor(x):
-    return 2 * x[0]**2 + 205 * x[1]**2 - 10 * x[0]*x[1] + 20 * x[0] + 30 * x[1] + 23
+    return 2.0 * x[0]**2 + 205.0 * x[1]**2 - 10.0 * x[0]*x[1] + 20.0 * x[0] + 30.0 * x[1] + 23.0
 
 def f_rozen(x):
-    return (1-x[0])**2 + 100 * (x[1]-x[0]**2)**2
+    return (1.0-x[0])**2 + 100.0 * (x[1]-x[0]**2)**2
 
 # Gradients.
 def grad_well(x):

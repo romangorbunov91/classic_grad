@@ -1,5 +1,5 @@
-# version 1.1 by romangorbunov91
-# 06-Sep-2025
+# version 1.2 by romangorbunov91
+# 09-Sep-2025
 
 import numpy as np
 import re
@@ -15,7 +15,7 @@ def update_readme_section(tbl_df, readme_path, tbl_name, section):
     end_marker = f'<!-- END_{section.upper()} -->'
 
     # Wrap the table with headers and markers.
-    new_section = f'\n{start_marker} \n## {tbl_name}\n{markdown_table}\n{end_marker}'
+    new_section = f'\n{start_marker} \n### {tbl_name}\n{markdown_table}\n{end_marker}'
     
     # Remove any previous content between the markers.
     pattern = re.compile(f'{re.escape(start_marker)}.*?{re.escape(end_marker)}', re.DOTALL)
