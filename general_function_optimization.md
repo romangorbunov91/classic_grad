@@ -4,7 +4,7 @@
 ## Критерий останова
 
 $$\begin{equation}
-    \|\nabla f(x_k)\| < 1e-5.
+    \Vert\nabla f(x_k)\Vert < 1e-5.
 \end{equation}$$
 
 ## Траектории

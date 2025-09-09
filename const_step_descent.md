@@ -4,7 +4,7 @@
 ## Критерий останова
 
 $$\begin{equation}
-    \|\nabla f(x_k)\| < \varepsilon.
+    \Vert\nabla f(x_k)\Vert < \varepsilon.
 \end{equation}$$
 
 ## Координаты минимума функции
