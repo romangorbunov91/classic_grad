@@ -1,9 +1,9 @@
-# version 1.0.1 by romangorbunov91
-# 07-Sep-2025
+# version 1.0.2 by romangorbunov91
+# 12-Sep-2025
 import numpy as np
 
 # Классический градиентный спуск.
-def const_step_grad_descent(loss_func, grad_func, x_init, learning_rate, tolerance, printoutput):
+def const_step_grad_descent(grad_func, x_init, learning_rate, tolerance, printoutput):
     # 'x_init' must be np.array([val1, val2]).
     # 'printoutput' is BOOL.
     iteration_max = 10000000
