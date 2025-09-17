@@ -4,7 +4,7 @@
 ## Критерий останова
 
 $$\begin{equation}
-    \Vert\nabla f(x_k)\Vert < 1e-5.
+    \Vert\nabla f(x_k)\Vert < 1e-3.
 \end{equation}$$
 
 ## Функция Розенброка
